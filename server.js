@@ -1,10 +1,12 @@
-import express from 'express';
-import colors from 'colors';
-import dotenv from 'dotenv';
-import morgan from 'morgan';
-import connectDB from './config/db.js';
-import authRoute from './routes/authRoute.js'
-import cors from 'cors';
+import express from "express";
+import colors from "colors";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
+import cors from "cors";
 //config environment variables
 dotenv.config();
 
@@ -17,16 +19,20 @@ const app = express();
 //middleware
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 //routes
- app.use("/api/v4/auth", authRoute);
+app.use("/api/v4/auth", authRoutes);
+app.use("/api/v4/category", categoryRoutes);
+app.use("/api/v4/product", productRoutes);
 
-app.get('/',(req,res)=>{
-    res.send({
-        message:"Welcome to ECommerce website",
-    })
-})
-const PORT=process.env.PORT || 8080;
-app.listen(PORT,()=>{
-    console.log(`Server listening on ${process.env.DEV_MODE} mode ${PORT}`.bgCyan.white);
-})
+app.get("/", (req, res) => {
+  res.send({
+    message: "Welcome to ECommerce website",
+  });
+});
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(
+    `Server listening on ${process.env.DEV_MODE} mode ${PORT}`.bgCyan.white
+  );
+});
