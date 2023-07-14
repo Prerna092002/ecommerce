@@ -1,6 +1,6 @@
 import express from 'express';
 const router=express.Router();
-import {registerController,loginController,testController,forgotPasswordController} from '../controllers/authController.js';
+import {registerController,loginController,testController,forgotPasswordController,updateProfileController} from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 //routing
 //register || method POST
@@ -27,5 +27,8 @@ router.get('/admin-auth',requireSignIn,isAdmin,(req,res)=>{
 
 //forget-password
 router.post('/forgot-password',forgotPasswordController);
+
+//update profile
+router.put("/profile", requireSignIn, updateProfileController);
 
 export default router;

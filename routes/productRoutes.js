@@ -6,18 +6,14 @@ import {
        productPhotoController,
        deleteProductController,
        updateProductController,
+       productListController,
+       searchProductController,
+       productCountController,
+       productFiltersController,
+       realtedProductController,
+       productCategoryController
 //   brainTreePaymentController,
 //   braintreeTokenController,
-   
-  
-//   productCategoryController,
-//   productCountController,
-//   productFiltersController,
-//   productListController,
-  
-//   realtedProductController,
-//   searchProductController,
-   
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -53,29 +49,24 @@ router.get("/product-photo/:pid", productPhotoController);
 //delete product
 router.delete("/delete-product/:pid", deleteProductController);
 
-//  //filter product
-//  router.post("/product-filters", productFiltersController);
+ //filter product
+ router.post("/product-filters", productFiltersController);
 
-// //product count
-// router.get("/product-count", productCountController);
+//product count
+router.get("/product-count", productCountController);
 
-// //product per page
-// router.get("/product-list/:page", productListController);
+//product per page
+router.get("/product-list/:page", productListController);
 
-// //search product
-// router.get("/search/:keyword", searchProductController);
+//search product
+router.get("/search/:keyword", searchProductController);
 
 // //similar product
-// router.get("/related-product/:pid/:cid", realtedProductController);
+router.get("/related-product/:pid/:cid", realtedProductController);
 
-// //category wise product
-// router.get("/product-category/:slug", productCategoryController);
+ //category wise product
+ router.get("/product-category/:slug", productCategoryController);
 
-// //payments routes
-// //token
-// router.get("/braintree/token", braintreeTokenController);
 
-// //payments
-// router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
 
 export default router;
